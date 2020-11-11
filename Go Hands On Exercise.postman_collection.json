@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "0a75cc58-85d7-4ec7-bd92-f54d553d26b3",
+		"name": "Go Hands On Exercise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Rectangle Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a48631d-9827-45ef-8c1d-3ec45e8d3a29",
+						"exec": [
+							"pm.test(\"Invalid name for shape\", function () {",
+							"    pm.expect(pm.response.code).to.be.equal(400)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"width\": 100,\n    \"length\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/shapes/rect",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shapes",
+						"rect"
+					],
+					"query": [
+						{
+							"key": "relatedShape",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "72",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Circle Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75b4a75e-8efb-4280-95f4-3edaec3a14c3",
+						"exec": [
+							"pm.test(\"Valid Rectangle\", function () {",
+							"    pm.expect(pm.response.code).to.be.equal(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"x\": 0,\n    \"y\": 0,\n    \"radius\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/shapes/rect?name=test-shape-name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shapes",
+						"rect"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "test-shape-name"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all shapes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed8fb780-4bf1-47e4-92eb-8f6eda6dc24a",
+						"exec": [
+							"pm.test(\"Valid Rectangle\", function () {",
+							"    pm.expect(pm.response.code).to.be.equal(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/shapes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shapes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hello World",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aed96c88-3f05-43c2-8ffd-e39d1bb232ca",
+						"exec": [
+							"pm.test(\"Valid Rectangle\", function () {",
+							"    pm.expect(pm.response.code).to.be.equal(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hello"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "7ab677c9-cc85-4de8-8fe2-8f579ff8d909",
+			"key": "server",
+			"value": "http://localhost:3000/"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
