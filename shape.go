@@ -1,5 +1,7 @@
 package main
 
+import "math"
+
 // Shape interface to provide methods we need for our shapes to implement
 type Shape interface {
 	Area() int
@@ -26,10 +28,15 @@ func (r *Rectangle) Scale(x int) {
 }
 
 type Circle struct {
-	// TODO: add json tags for decoding from body to this struct
-	X      int
-	Y      int
-	Radius int
+	X      int `json:"x"`
+	Y      int `json:"y"`
+	Radius int `json:"radius"`
 }
 
-//TODO: add implementation of Circle for Shape methods
+func (r *Circle) Area() int {
+	return int(float64(r.Radius * r.Radius) * math.Pi)
+}
+
+func (r *Circle) Perimeter() int {
+	return int(float64(2 * r.Radius) * math.Pi)
+}
