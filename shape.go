@@ -6,7 +6,7 @@ import "math"
 type Shape interface {
 	Area() int
 	Scale(x int)
-	Parameter() int
+	Perimeter() int
 }
 
 type Rectangle struct {
@@ -18,7 +18,7 @@ func (r *Rectangle) Area() int {
 	return r.Length * r.Width
 }
 
-func (r *Rectangle) Parameter() int {
+func (r *Rectangle) Perimeter() int {
 	return 2 * (r.Length + r.Width)
 }
 
@@ -39,4 +39,8 @@ func (r *Circle) Area() int {
 
 func (r *Circle) Perimeter() int {
 	return int(float64(2 * r.Radius) * math.Pi)
+}
+
+func (r *Circle) Scale(x int) int {
+	return int(float64(r.Radius * r.Radius) * math.Pi) * 2
 }
