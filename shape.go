@@ -33,14 +33,14 @@ type Circle struct {
 	Radius int `json:"radius"`
 }
 
-func (r *Circle) Area() int {
-	return int(float64(r.Radius * r.Radius) * math.Pi)
+func (c *Circle) Area() int {
+	return int(float64(c.Radius*c.Radius) * math.Pi)
 }
 
-func (r *Circle) Perimeter() int {
-	return int(float64(2 * r.Radius) * math.Pi)
+func (c *Circle) Perimeter() int {
+	return int(float64(2*c.Radius) * math.Pi)
 }
 
-func (r *Circle) Scale(x int) int {
-	return int(float64(r.Radius * r.Radius) * math.Pi) * 2
+func (c *Circle) Scale(x int) {
+	c.Radius = c.Radius * 2
 }
