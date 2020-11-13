@@ -89,13 +89,49 @@ func handleRectangle(w http.ResponseWriter, req *http.Request) {
 
 func handleCircle(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	// TODO: add implementation to read circle and store in shapes map with given name
-	response := map[string]string{
-		"message": "Not implemented",
+	switch req.Method {
+	case http.MethodPost:
+		names, ok := req.URL.Query()["name"] // get the query param "name"
+
+		if !ok || len(names[0]) < 1 {
+			http.Error(w, "Name is not defined or is empty", http.StatusBadRequest)
+			return
+		}
+
+		// check if anything already stored with this name
+		_, present := shapes[names[0]]
+
+		if present {
+			http.Error(w, "Shape name already exists", http.StatusBadRequest)
+			return
+		}
+
+		// if body in request is missing throw StatusBadRequest error
+		if req.Body == nil {
+			http.Error(w, "Body required", http.StatusBadRequest)
+			return
+		}
+
+		// decode request body json to Circle struct
+		var circle Circle
+		err := json.NewDecoder(req.Body).Decode(&circle)
+		if err != nil {
+			http.Error(w, err.Error(), 400)
+			return
+		}
+
+		// add circle to the shapes map
+		shapes[names[0]] = &circle
+
+		// create response object
+		response := map[string]string{
+			"message": "Circle shape (" + names[0] + ") was created successfully",
+		}
+		_ = json.NewEncoder(w).Encode(response)
+	default:
+		http.Error(w, "This HTTP method is not allowed", http.StatusMethodNotAllowed)
 	}
 
-	w.WriteHeader(http.StatusNotImplemented)
-	_ = json.NewEncoder(w).Encode(response)
 }
 
 func main() {
